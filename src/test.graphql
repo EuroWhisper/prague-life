@@ -1,0 +1,14 @@
+query Test {
+  search(term: "burrito", location: "prague") {
+    business {
+      name
+      reviews {
+        text
+        rating
+        time_created
+        url
+      }
+      photos
+    }
+  }
+}

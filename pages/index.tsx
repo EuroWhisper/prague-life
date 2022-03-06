@@ -1,14 +1,23 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import styled from 'styled-components'
+import type { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import styled from 'styled-components';
+import {
+  TestDocument,
+  TestQuery,
+  useTestQuery,
+} from '../src/generated/graphql';
+import { createApolloClient } from '../lib/apolloClient';
 
 const Title = styled.h1`
   font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary}`;
+  color: ${({ theme }) => theme.colors.primary};
+`;
 
 const Home: NextPage = () => {
+  const { data } = useTestQuery();
+  console.log(data);
   return (
     <div className={styles.container}>
       <Head>
@@ -71,7 +80,21 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const apolloClient = createApolloClient();
+  try {
+    const result = await apolloClient.query<TestQuery>({ query: TestDocument });
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+
+  return {
+    props: { pageData: 'hi' },
+  };
+};
+
+export default Home;
