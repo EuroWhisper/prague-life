@@ -1,6 +1,7 @@
-query Test {
-  search(term: "burrito", location: "prague") {
+query BusinessPreviews($searchTerm: String!) {
+  search(term: $searchTerm, location: "prague") {
     business {
+      id
       name
       reviews {
         text
@@ -8,6 +9,7 @@ query Test {
         time_created
         url
       }
+      rating
       photos
     }
   }

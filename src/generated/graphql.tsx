@@ -464,16 +464,19 @@ export type User = {
   profile_url?: Maybe<Scalars['String']>;
 };
 
-export type TestQueryVariables = Exact<{ [key: string]: never; }>;
+export type BusinessPreviewsQueryVariables = Exact<{
+  searchTerm: Scalars['String'];
+}>;
 
 
-export type TestQuery = { __typename?: 'Query', search?: { __typename?: 'Businesses', business?: Array<{ __typename?: 'Business', name?: string | null, photos?: Array<string | null> | null, reviews?: Array<{ __typename?: 'Review', text?: string | null, rating?: number | null, time_created?: string | null, url?: string | null } | null> | null } | null> | null } | null };
+export type BusinessPreviewsQuery = { __typename?: 'Query', search?: { __typename?: 'Businesses', business?: Array<{ __typename?: 'Business', id?: string | null, name?: string | null, rating?: number | null, photos?: Array<string | null> | null, reviews?: Array<{ __typename?: 'Review', text?: string | null, rating?: number | null, time_created?: string | null, url?: string | null } | null> | null } | null> | null } | null };
 
 
-export const TestDocument = gql`
-    query Test {
-  search(term: "burrito", location: "prague") {
+export const BusinessPreviewsDocument = gql`
+    query BusinessPreviews($searchTerm: String!) {
+  search(term: $searchTerm, location: "prague") {
     business {
+      id
       name
       reviews {
         text
@@ -481,6 +484,7 @@ export const TestDocument = gql`
         time_created
         url
       }
+      rating
       photos
     }
   }
@@ -488,28 +492,29 @@ export const TestDocument = gql`
     `;
 
 /**
- * __useTestQuery__
+ * __useBusinessPreviewsQuery__
  *
- * To run a query within a React component, call `useTestQuery` and pass it any options that fit your needs.
- * When your component renders, `useTestQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useBusinessPreviewsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBusinessPreviewsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useTestQuery({
+ * const { data, loading, error } = useBusinessPreviewsQuery({
  *   variables: {
+ *      searchTerm: // value for 'searchTerm'
  *   },
  * });
  */
-export function useTestQuery(baseOptions?: Apollo.QueryHookOptions<TestQuery, TestQueryVariables>) {
+export function useBusinessPreviewsQuery(baseOptions: Apollo.QueryHookOptions<BusinessPreviewsQuery, BusinessPreviewsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<TestQuery, TestQueryVariables>(TestDocument, options);
+        return Apollo.useQuery<BusinessPreviewsQuery, BusinessPreviewsQueryVariables>(BusinessPreviewsDocument, options);
       }
-export function useTestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TestQuery, TestQueryVariables>) {
+export function useBusinessPreviewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BusinessPreviewsQuery, BusinessPreviewsQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<TestQuery, TestQueryVariables>(TestDocument, options);
+          return Apollo.useLazyQuery<BusinessPreviewsQuery, BusinessPreviewsQueryVariables>(BusinessPreviewsDocument, options);
         }
-export type TestQueryHookResult = ReturnType<typeof useTestQuery>;
-export type TestLazyQueryHookResult = ReturnType<typeof useTestLazyQuery>;
-export type TestQueryResult = Apollo.QueryResult<TestQuery, TestQueryVariables>;
+export type BusinessPreviewsQueryHookResult = ReturnType<typeof useBusinessPreviewsQuery>;
+export type BusinessPreviewsLazyQueryHookResult = ReturnType<typeof useBusinessPreviewsLazyQuery>;
+export type BusinessPreviewsQueryResult = Apollo.QueryResult<BusinessPreviewsQuery, BusinessPreviewsQueryVariables>;
