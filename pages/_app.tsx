@@ -1,4 +1,8 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import {
+  createGlobalStyle,
+  DefaultTheme,
+  ThemeProvider,
+} from 'styled-components';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
@@ -12,11 +16,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
+const theme: DefaultTheme = {
   fontFamily: 'Arial',
   colors: {
     primary: '#0070f3',
     grey: '#333333',
+    ratingStar: '#faaf00',
   },
 };
 
