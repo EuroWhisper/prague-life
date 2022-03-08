@@ -30,10 +30,9 @@ const BusinessCard = ({ business }: Props) => {
       <Box p={2}>
         {<Text as="h6">{business.name}</Text>}
         {business.rating && (
-          <>
+          <Box>
             <StarRating rating={business.rating} />
-            {business.rating}
-          </>
+          </Box>
         )}
       </Box>
     </Card>
