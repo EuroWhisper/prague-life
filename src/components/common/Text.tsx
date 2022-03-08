@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type Props = {
-  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+  as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 };
 const Text = styled.span<Props>`
   color: ${({ theme }) => theme.colors.grey};
@@ -18,6 +18,7 @@ const fontSizes = {
   h5: 24,
   h6: 20,
   p: 16,
+  span: 16,
 };
 
 export default Text;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   border,
   layout,
+  flexbox,
   typography,
   space,
   color,
@@ -12,6 +13,7 @@ import {
   ColorProps,
   PositionProps,
   LayoutProps,
+  FlexboxProps,
 } from 'styled-system';
 
 const Box = styled.div<
@@ -21,6 +23,7 @@ const Box = styled.div<
   | SpaceProps
   | ColorProps
   | PositionProps
->`${border}; ${layout}; ${typography};  ${space}; ${color}; ${position};);`;
+  | FlexboxProps
+>`${border}; ${layout}; ${flexbox}; ${typography};  ${space}; ${color}; ${position};);`;
 
 export default Box;

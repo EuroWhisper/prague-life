@@ -1,8 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import styled from 'styled-components';
-import styles from '../styles/Home.module.css';
 
 import { createApolloClient } from '../lib/apolloClient';
 import HeaderImage from '../src/components/HeaderImage';
@@ -15,6 +13,7 @@ import {
   BusinessPreviewsQuery,
   BusinessPreviewsQueryVariables,
 } from '../src/generated/graphql';
+import Box from '../src/components/common/layout/Box';
 
 const Title = styled.p`
   margin: 0;
@@ -40,11 +39,13 @@ const Home: NextPage<Props> = (props) => {
       </Head>
 
       <main>
-        <HeaderImage height="30vh" backgroundImage={CoverImage}>
+        <HeaderImage height="40vh" backgroundImage={CoverImage}>
           <Title>Prague Life</Title>
         </HeaderImage>
         {props.newBusinesses && (
-          <HomePageContent newBusinesses={props.newBusinesses} />
+          <Box mt={'2rem'}>
+            <HomePageContent newBusinesses={props.newBusinesses} />
+          </Box>
         )}
         <Card>Hi</Card>
       </main>
