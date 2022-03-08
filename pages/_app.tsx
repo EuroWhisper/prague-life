@@ -13,8 +13,10 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
+  fontFamily: 'Arial',
   colors: {
     primary: '#0070f3',
+    grey: '#333333',
   },
 };
 
